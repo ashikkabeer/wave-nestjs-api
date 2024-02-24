@@ -26,9 +26,5 @@ export class CreateAuthDto {
 
   @IsString()
   @IsNotEmpty()
-  collegeId: string;
-
-  @IsString()
-  @IsNotEmpty()
   gender: string;
 }
