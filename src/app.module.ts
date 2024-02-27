@@ -9,6 +9,8 @@ import { CloudModule } from './cloud/cloud.module';
 import { PrismaService } from './prisma/prisma.service';
 import { PrismaModule } from './prisma/prisma.module';
 import { ConfigModule } from '@nestjs/config';
+import { EventModule } from './event/event.module';
+import { RoomModule } from './room/room.module';
 
 @Module({
   imports: [
@@ -21,6 +23,8 @@ import { ConfigModule } from '@nestjs/config';
     CollegesModule,
     CloudModule,
     PrismaModule,
+    EventModule,
+    RoomModule,
   ],
   controllers: [PostsController],
   providers: [PostsService, PrismaService],

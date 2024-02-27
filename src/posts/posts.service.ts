@@ -1,10 +1,18 @@
 import { Injectable } from '@nestjs/common';
-import { CreatePostDto } from './dto/create-post.dto';
-import { UpdatePostDto } from './dto/update-post.dto';
+import { CreatePostDto, UpdatePostDto } from './dto/index';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class PostsService {
+  constructor(
+    private prisma: PrismaService,
+    private config: ConfigService,
+  ) {}
   create(createPostDto: CreatePostDto) {
+    //store the images in a google cloud storage
+    //get the url back from the cloud storage
+    //create a post in prisma
     return 'This action adds a new post';
   }
 
