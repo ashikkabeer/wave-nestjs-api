@@ -3,7 +3,10 @@ It is a social media platform designed exclusively for students. It offers a spa
 
 ## Implemented Features
 - Authentication
-- JWT Using Passport-JWT Strategy
+- JWT using Passport-JWT Strategy
+- Implemented PostGreSQL database using prisma
+- Created essential modules
+- Docker Compose configuration for PostgreSQL database setup
 
 ## Installation
 
