@@ -1,24 +1,39 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication } from '@nestjs/common';
+import { INestApplication, ValidationPipe } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from './../src/app.module';
-
+import { PrismaService } from 'src/prisma/prisma.service';
+import * as pactum from 'pactum';
+import { CreateAuthDto } from 'src/auth/dto';
 describe('AppController (e2e)', () => {
   let app: INestApplication;
+  let prisma: PrismaService;
 
-  beforeEach(async () => {
-    const moduleFixture: TestingModule = await Test.createTestingModule({
+  beforeAll(async () => {
+    const moduleRef = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();
 
-    app = moduleFixture.createNestApplication();
+    app = moduleRef.createNestApplication();
+    app.useGlobalPipes(
+      new ValidationPipe({
+        whitelist: true,
+      }),
+    );
+
     await app.init();
+    await app.listen(3333);
+
+    prisma = app.get(PrismaService);
+    await prisma.cleanDb(); //write cleandb fun
+    pactum.request.setBaseUrl('http://localhost:3333');
   });
 
-  it('/ (GET)', () => {
-    return request(app.getHttpServer())
-      .get('/')
-      .expect(200)
-      .expect('Hello World!');
+  afterAll(async () => {
+    await app.close();
+  });
+
+  describe('Auth', () => {
+    const dto: CreateAuthDto = {};
   });
 });
