@@ -8,19 +8,21 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt()
-
+  id Int @id @default(autoincrement())
   name      String
-  username  String   @unique
-  email     String   @unique
+  username  String     @unique
+  email     String     @unique
   password  String
-  collegeId Int
-  gender    String
-  role      Role     @default(USER)
+  collegeId College?
+  gender    Gender
+  role      Role       @default(USER)
   posts     Post[]
   profile   Profile?
+  message   Message[]
+  userChat  UserChat[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
 }
 
 model Profile {
@@ -32,10 +34,13 @@ model Profile {
 
 model College {
   id              Int    @id @default(autoincrement())
-  Collegename     String
+  collegeName     String
   location        String
   establishedYear Int
   posts           Post[]
+
+  user   User @relation(fields: [userId], references: [id])
+  userId Int  @unique
 }
 
 model Post {
@@ -50,7 +55,39 @@ model Post {
   postId    Int      @unique
 }
 
+model Chat {
+  id        Int        @id @default(autoincrement())
+  createdAt DateTime   @default(now())
+  message   Message[]
+  userChat  UserChat[]
+}
+
+model UserChat {
+  userId Int
+  chatId Int
+  user   User @relation(fields: [userId], references: [id])
+  chat   Chat @relation(fields: [chatId], references: [id])
+
+  @@id([userId, chatId])
+}
+
+model Message {
+  id        Int      @id @default(autoincrement())
+  chatId    Int
+  userId    Int
+  content   String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+  chat      Chat     @relation(fields: [chatId], references: [id])
+}
+
 enum Role {
   USER
   ADMIN
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
 }

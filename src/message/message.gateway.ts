@@ -13,7 +13,7 @@ export class MessageGateway {
 
   @SubscribeMessage('createMessage')
   create(@MessageBody() createMessageDto: CreateMessageDto) {
-    console.log(createMessageDto)
+    console.log(createMessageDto);
     return this.messageService.create(createMessageDto);
   }
 
