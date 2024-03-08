@@ -11,7 +11,6 @@ import { PrismaModule } from './prisma/prisma.module';
 import { ConfigModule } from '@nestjs/config';
 import { EventModule } from './event/event.module';
 import { MessageModule } from './message/message.module';
-
 @Module({
   imports: [
     ConfigModule.forRoot({
