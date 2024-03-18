@@ -1,5 +1,5 @@
 {
     "editor.fontLigatures": "'calt', 'liga', 'dlig', 'ss01', 'ss02', ... (more stylistic sets) ...",
     "editor.fontFamily":  "Consolas, 'Courier New', monospace",
-    "workbench.colorTheme": "Nightfall Dimmed",
+    "workbench.colorTheme": "Default Dark Modern",
 }
