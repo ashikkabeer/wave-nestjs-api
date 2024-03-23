@@ -24,7 +24,6 @@ export class AuthService {
           username: createAuthDto.username,
           email: createAuthDto.email,
           password: hash,
-          collegeId: 0,
           gender: createAuthDto.gender,
         },
       });

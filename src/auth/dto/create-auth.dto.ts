@@ -26,5 +26,5 @@ export class CreateAuthDto {
 
   @IsString()
   @IsNotEmpty()
-  gender: string;
+  gender: any;
 }

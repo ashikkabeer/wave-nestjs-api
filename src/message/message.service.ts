@@ -44,7 +44,14 @@ export class MessageService {
     return `This action returns a #${id} message`;
   }
 
-  update(id: number, updateMessageDto: UpdateMessageDto) {
+  async update(id: number, updateMessageDto: UpdateMessageDto) {
+    await this.prisma.message.create({
+      data: {
+        content: updateMessageDto.content,
+        chatId: updateMessageDto.chatId,
+        userId: updateMessageDto.userId,
+      },
+    });
     return `This action updates a #${id} message`;
   }
 
