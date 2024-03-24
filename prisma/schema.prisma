@@ -56,10 +56,17 @@ model Post {
 }
 
 model Chat {
-  id        Int        @id @default(autoincrement())
-  createdAt DateTime   @default(now())
-  message   Message[]
-  userChat  UserChat[]
+  id          Int        @id @default(autoincrement())
+  createdAt   DateTime   @default(now())
+  title       String
+  description String
+  mentor      String
+  author      String
+  semester    Int
+  department  String
+  subject     String
+  message     Message[]
+  userChat    UserChat[]
 }
 
 model UserChat {

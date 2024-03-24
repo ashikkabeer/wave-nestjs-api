@@ -11,6 +11,7 @@ import { PrismaModule } from './prisma/prisma.module';
 import { ConfigModule } from '@nestjs/config';
 import { EventModule } from './event/event.module';
 import { MessageModule } from './message/message.module';
+import { RoomModule } from './room/room.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -24,6 +25,7 @@ import { MessageModule } from './message/message.module';
     PrismaModule,
     EventModule,
     MessageModule,
+    RoomModule,
   ],
   controllers: [PostsController],
   providers: [PostsService, PrismaService],
