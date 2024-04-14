@@ -44,15 +44,17 @@ model College {
 }
 
 model Post {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  title     String
-  published Boolean  @default(false)
-  author    User     @relation(fields: [authorId], references: [id])
-  authorId  Int
-  college   College  @relation(fields: [postId], references: [id])
-  postId    Int      @unique
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  title       String
+  description String
+  media       String  @default("")
+  published   Boolean  @default(false)
+  author      User     @relation(fields: [authorId], references: [id])
+  authorId    Int
+  college     College  @relation(fields: [postId], references: [id])
+  postId      Int      @unique
 }
 
 model Chat {

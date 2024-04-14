@@ -12,6 +12,7 @@ import { ConfigModule } from '@nestjs/config';
 import { EventModule } from './event/event.module';
 import { MessageModule } from './message/message.module';
 import { RoomModule } from './room/room.module';
+import { MulterModule } from '@nestjs/platform-express';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -26,6 +27,7 @@ import { RoomModule } from './room/room.module';
     EventModule,
     MessageModule,
     RoomModule,
+    MulterModule,
   ],
   controllers: [PostsController],
   providers: [PostsService, PrismaService],
